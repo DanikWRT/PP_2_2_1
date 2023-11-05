@@ -18,6 +18,9 @@ public class User {
 
    @Column(name = "email")
    private String email;
+   @OneToOne
+   @JoinColumn(name = "car_id", referencedColumnName = "id")
+   private Car car;
 
    public User() {}
    
@@ -25,6 +28,25 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.car = null;
+   }
+
+   public User(String firstName, String lastName, String email, Car car) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+      this.car = car;
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              ", car=" + car +
+              '}';
    }
 
    public Long getId() {
